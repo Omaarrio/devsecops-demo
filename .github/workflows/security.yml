@@ -1,0 +1,29 @@
+name: Security Pipeline
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  security_checks:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Install Python dependencies
+      run: pip install -r requirements.txt
+
+    - name: Run secrets scan
+      run: python scanner/secrets_scan.py
+
+    - name: Run dependency scan (pip-audit)
+      run: pip install pip-audit && pip-audit
+
+    - name: Install Trivy
+      uses: aquasecurity/trivy-action@master
+      with:
+        scan-type: image
+        image-ref: "devsecops-app:latest"
+        format: "table"
