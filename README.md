@@ -1,3 +1,5 @@
+
+![Security Pipeline] https://github.com/Omaarrio/devsecops-demo/blob/main/.github/workflows/security.yml
 # DevSecOps Security Pipeline 🔐🚗
 A minimal end-to-end DevSecOps demo showcasing secure development, containerization, and vulnerability scanning.
 
