@@ -50,5 +50,14 @@ jobs:
       with:
       version: latest
 
+      - name: Run Trivy Image Scan
+        uses: aquasecurity/trivy-action@0.20.0
+        with:
+        scan-type: image
+        image-ref: secure-app
+        severity: HIGH,CRITICAL
+        ignore-unfixed: true
+
+
       # Do not fail pipeline for vulnerabilities
 
