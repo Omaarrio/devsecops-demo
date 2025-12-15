@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # DevSecOps Setup & Bash Commands
 
 This document lists all Bash commands used to build, secure, scan, and automate the DevSecOps demo project.
@@ -54,3 +55,6 @@ git pull
 git push
 
 ##10.
+=======
+
+>>>>>>> 5d0a71e240412740c0e2f21df1dc7ba10f990db8

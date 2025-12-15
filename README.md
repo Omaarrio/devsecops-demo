@@ -1,9 +1,9 @@
 
 ![Security Pipeline] https://github.com/Omaarrio/devsecops-demo/blob/main/.github/workflows/security.yml
 # DevSecOps Security Pipeline 🔐🚗
-A minimal end-to-end DevSecOps demo showcasing secure development, containerization, and vulnerability scanning.
+Eine minimalistische Ende-zu-Ende-DevSecOps-Demo, die sichere Entwicklung, Containerisierung und Schwachstellenscans veranschaulicht.
+Diese Projekt demonstriert :
 
-This project demonstrates:
 - Entwicklung einer kleinen Python/Flask-Anwendung
 - Containerisierung mit Docker
 - Sicherheitsprüfung von Python-Abhängigkeiten (pip-audit)
