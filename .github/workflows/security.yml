@@ -7,13 +7,14 @@ on:
     branches: [ main ]
 
 jobs:
-  security-scan:
-    name: Security Scanning (pip-audit & Trivy)
+  security:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v3
+    # -------------------------
+    # Checkout Code
+    # -------------------------
+    - uses: actions/checkout@v3
 
     # -------------------------
     # Python Dependency Scan
@@ -23,7 +24,7 @@ jobs:
       with:
         python-version: '3.11'
 
-    - name: Install dependencies
+    - name: Install pip-audit + dependencies
       run: |
         pip install --upgrade pip
         pip install pip-audit
@@ -31,10 +32,10 @@ jobs:
 
     - name: Run pip-audit
       run: pip-audit
-      continue-on-error: true   # pipeline continues even if vulnerabilities found
+      continue-on-error: true
 
     # -------------------------
-    # Build Docker Image
+    # Docker Build
     # -------------------------
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v2
@@ -43,21 +44,12 @@ jobs:
       run: docker build -t secure-app .
 
     # -------------------------
-    # Trivy Image Scan
+    # Trivy Container Scan
     # -------------------------
-    - name: Install Trivy
+    - name: Run Trivy Scan via GitHub Action
       uses: aquasecurity/trivy-action@0.20.0
       with:
-      version: latest
-
-      - name: Run Trivy Image Scan
-        uses: aquasecurity/trivy-action@0.20.0
-        with:
         scan-type: image
         image-ref: secure-app
         severity: HIGH,CRITICAL
         ignore-unfixed: true
-
-
-      # Do not fail pipeline for vulnerabilities
-
